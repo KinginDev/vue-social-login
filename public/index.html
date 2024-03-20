@@ -1,17 +1,78 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <div
+      id="g_id_onload"
+      data-client_id="667449470744-dr18b20438j8imstoln602u04sb5ni96.apps.googleusercontent.com"
+      data-context="signin"
+      data-ux_mode="popup"
+      data-login_uri="https://vue-social.to:1024"
+      data-auto_prompt="false"
+    ></div>
+
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+
+  <script>
+    $(document).ready(function () {
+      // Load the SDK asynchronously
+      (function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, "script", "facebook-jssdk");
+
+      // Initialize the SDK upon successful load
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: "756407839381634",
+          cookie: true,
+          xfbml: true,
+          version: "v19.0", // Replace 'vX.Y' with the current version
+        });
+
+        FB.AppEvents.logPageView();
+      };
+
+      // Check login status
+      window.checkLoginState = function () {
+        FB.getLoginStatus(function (response) {
+          statusChangeCallback(response);
+        });
+      };
+
+      // Handle status changes
+      function statusChangeCallback(response) {
+        if (response.status === "connected") {
+          // Logged into your app and Facebook
+          console.log("Successfully logged in with Facebook");
+          console.log("Access Token: " + response.authResponse.accessToken);
+        } else {
+          // The person is not logged into your app or we are unable to tell
+          console.log("Please log into this app.");
+        }
+      }
+    });
+  </script>
 </html>
