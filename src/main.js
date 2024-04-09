@@ -5,7 +5,7 @@ import OneSignalVuePlugin from "@onesignal/onesignal-vue3";
 import GoogleSignInPlugin from "vue3-google-signin";
 // import "./firebaseConfig";
 //set axios baseUrl
-axios.defaults.baseURL = "https://api.safepazz.test/";
+axios.defaults.baseURL = "https://api.safepazz.to/";
 
 const app = createApp(App);
 

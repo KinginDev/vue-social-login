@@ -1,0 +1,15 @@
+authtoken: 2LWYSzTLXUrVGeZGWd2YonL2K8Z_4hHyJKaGBNCV9Ja1N2iKz
+version: 2
+tunnels:
+  your_tunnel_name:
+    proto: http
+    hostname: gull-cool-newly.ngrok-free.app
+    addr: https://vue-social.to:1024
+
+    # -------------------------
+    # Additional options
+    # -------------------------
+    # auth: "username:password"
+    # host_header: rewrite
+    # inspect: true
+    # bind_tls: true
